@@ -1,0 +1,46 @@
+.navigation-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    line-height: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 0 .5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+}
+
+.navigation-bar:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 1;
+    background-color: currentColor;
+}
+
+.navigation-bar__item {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    margin: 0 .5rem;
+}
+
+.navigation-bar__item--flex{
+    order: 0;
+    flex: 1 1 auto;
+    align-self: auto;
+    margin: 0 .5rem;
+}
+
+.navigation-bar__placeholder {
+    height: 50px;
+}
