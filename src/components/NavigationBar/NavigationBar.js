@@ -9,7 +9,7 @@ const NavigationBar = () => (
         <div className="navigation-bar__placeholder"></div>
         <nav className="navigation-bar">
             <Link className="navigation-bar__item--flex" to="/">Home</Link>
-            <Link className="navigation-bar__item" to="/login">login</Link>
+            <Link className="navigation-bar__item" to="/login">Sign In</Link>
         </nav>
     </div>
 )
