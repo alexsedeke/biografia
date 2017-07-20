@@ -2,19 +2,27 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import * as firebase from 'firebase';
 
-class Logout extends React.Component {
+class PageSignout extends React.Component {
+    state = {
+        redirect: false
+    }
+
     componentDidMount() {
-        ;
+        const signoutPromise = firebase.auth().signOut();
+        signoutPromise.then(() => {
+            this.setState({redirect: true});
+        }).catch(e => {
+            console.log(e);
+        });
     }
 
     render() {
-        const signout = firebase.auth().signOut();
-        return signout.then(() => {
-            return (
-                <Redirect to="/login" />
-            )
-        });
+        return (
+            this.state.redirect
+            ?<Redirect to="/signin" />
+            :<div></div>
+        )
     }
 }
 
-export  { Logout };
+export  { PageSignout };
