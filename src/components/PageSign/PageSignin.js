@@ -1,11 +1,14 @@
 import React from 'react';
-import firebase from 'firebase';
+import * as firebase from 'firebase';
+import { Redirect } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 
 class PageSignin extends React.Component {
     state = {
         username: '',
-        password: ''
+        password: '',
+        message: '',
+        success: false
     }
 
     setUsername = (evt) => {
@@ -22,17 +25,22 @@ class PageSignin extends React.Component {
 
     handleLogin = (evt) => {
         evt.preventDefault();
+        this.setState({
+            message: ''
+        })
         // handle login here
         const auth = firebase.auth();
         const signinPromise = auth.signInWithEmailAndPassword( this.state.username, this.state.password );
         signinPromise.then(() => {
-            console.log('done');
+            this.setState({
+                success: true
+            });
         }).catch(e => {
-            console.log(e.message)
+            this.setState({
+                message: e.message
+            });
         });
     }
-
-
     render() {
         return (
             <div className="page-home">
@@ -48,6 +56,8 @@ class PageSignin extends React.Component {
                     </label>
                     <button>Login</button>
                 </form>
+                <p>{this.state.message}</p>
+                <div>{this.state.success?<Redirect to="/admin" />:''}</div>
             </div>
         )
     }
