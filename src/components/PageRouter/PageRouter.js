@@ -7,22 +7,13 @@ import {
 import firebase from 'firebase';
 import { NavigationBar } from '../NavigationBar';
 import { PageHome } from '../PageHome';
-import { PageLogin } from '../PageLogin';
+import { PageSignin, PageSignout } from '../PageSign';
 import { PageAdmin } from '../PageAdmin';
 import { NoRouteMatch } from '../NoRouteMatch';
 import { SecuredRoute } from './SecuredRoute';
 import { UnsecuredRoute } from './UnsecuredRoute';
 
 class PageRouter extends React.Component {
-    componentDidMount() {
-        firebase.auth().onAuthStateChanged( user => {
-            if ( user ) {
-                //
-            } else {
-                //
-            }
-        });
-    }
     render() {
         return (
             <Router>
@@ -31,7 +22,8 @@ class PageRouter extends React.Component {
 
                     <Switch>
                         <Route exact path="/" component={PageHome}/>
-                        <UnsecuredRoute path="/login" component={PageLogin}/>
+                        <UnsecuredRoute path="/signin" component={PageSignin}/>
+                        <SecuredRoute path="/signout" component={PageSignout}/>
                         <SecuredRoute path="/admin" component={PageAdmin}/>
                         <Route component={NoRouteMatch}/>
                     </Switch>
