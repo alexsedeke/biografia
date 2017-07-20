@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 //import PropTypes from 'prop-types';
 
 class PageLogin extends React.Component {
@@ -19,8 +20,12 @@ class PageLogin extends React.Component {
         });
     }
 
-    handleLogin() {
+    handleLogin = (evt) => {
+        evt.preventDefault();
         // handle login here
+        const auth = firebase.auth();
+        const authPromise = auth.signInWithEmailAndPassword( this.state.username, this.state.password );
+        authPromise.catch(e => console.log(e.message));
     }
 
     render() {
@@ -30,7 +35,7 @@ class PageLogin extends React.Component {
                 <form onSubmit={this.handleLogin}>
                     <label>
                         Username:
-                        <input type="text" value={this.state.username} onChange={this.setUsername} placeholder="Your user name" autoFocus required />
+                        <input type="email" value={this.state.username} onChange={this.setUsername} placeholder="Your user name" autoFocus required />
                     </label>
                     <label>
                         Password:
