@@ -1,4 +1,4 @@
-export default const config = {
+const config = {
     firebase: {
         apiKey: "AIzaSyCn-TMQ0YOBGDVUwYwFDWKhXzlu1eLz8I8",
         authDomain: "biografia-20edc.firebaseapp.com",
@@ -8,3 +8,5 @@ export default const config = {
         messagingSenderId: "484938172794"
     }
 }
+
+export default config;
