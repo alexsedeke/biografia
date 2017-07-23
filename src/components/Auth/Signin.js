@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 import { Redirect } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 
-class PageSignin extends React.Component {
+class Signin extends React.Component {
     state = {
         username: '',
         password: '',
@@ -43,7 +43,7 @@ class PageSignin extends React.Component {
     }
     render() {
         return (
-            <div className="page-home">
+            <div className="login-view">
                 <h1>login</h1>
                 <form onSubmit={this.handleLogin}>
                     <label>
@@ -63,4 +63,4 @@ class PageSignin extends React.Component {
     }
 }
 
-export { PageSignin };
+export { Signin };
