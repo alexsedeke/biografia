@@ -4,8 +4,13 @@ import {
 } from 'react-router-dom';
 import './navigation-bar.css';
 import { isAuthenticated } from '../../helper/auth';
+import * as firebase from 'firebase';
 
 class NavigationBar extends React.Component {
+
+    signout() {
+        firebase.auth().signOut();
+    }
 
     authenticated() {
         return (
@@ -17,7 +22,7 @@ class NavigationBar extends React.Component {
                     </div>
                     <div className="navigation-bar__item">
                         <Link className="navigation-bar__link" to="/admin">Admin</Link>
-                        <Link className="navigation-bar__link" to="/signout">Sign Out</Link>
+                        <a className="navigation-bar__link" onClick={this.signout} >Sign Out</a>
                     </div>
                </nav>
            </div>
