@@ -27,18 +27,20 @@
     background-color: currentColor;
 }
 
+.navigation-bar__link {
+    margin: 0 .5rem;
+}
+
 .navigation-bar__item {
     order: 0;
     flex: 0 1 auto;
     align-self: auto;
-    margin: 0 .5rem;
 }
 
 .navigation-bar__item--flex{
     order: 0;
     flex: 1 1 auto;
     align-self: auto;
-    margin: 0 .5rem;
 }
 
 .navigation-bar__placeholder {
