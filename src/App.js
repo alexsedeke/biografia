@@ -16,6 +16,7 @@ import {
 import { NoRouteMatch } from './components/NoRouteMatch';
 import { AdminRouter } from './components/Admin';
 import { PageHome } from './components/PageHome';
+import './App.css';
 
 class App extends Component {
     state = {
@@ -40,7 +41,7 @@ class App extends Component {
     render() {
         return(
             <Router>
-                <main className="app">
+                <main className="App">
                     <NavigationBar />
 
                     <Switch>
