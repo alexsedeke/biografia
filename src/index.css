@@ -11,5 +11,13 @@ body {
     padding: 0;
     font-family: sans-serif;
     font-size: 1rem;
-    color: rgb(156, 59, 203);
+    color: rgb(55, 139, 40);
+}
+
+a {
+    text-decoration: none;
+}
+
+#root {
+    min-height: 100%;
 }
