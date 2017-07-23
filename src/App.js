@@ -1,10 +1,21 @@
 import React, {
     Component
 } from 'react';
-//import logo from './logo.svg';
-import './App.css';
-import { PageRouter } from './components/PageRouter';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
 import * as firebase from 'firebase';
+import { NavigationBar } from './components/NavigationBar';
+import {
+    Signin,
+    SecuredRoute,
+    UnsecuredRoute
+} from './components/Auth';
+import { NoRouteMatch } from './components/NoRouteMatch';
+import { AdminRouter } from './components/Admin';
+import { PageHome } from './components/PageHome';
 
 class App extends Component {
     state = {
@@ -28,10 +39,20 @@ class App extends Component {
 
     render() {
         return(
-            <div className="App">
-                <PageRouter />
-            </div>
+            <Router>
+                <main className="app">
+                    <NavigationBar />
+
+                    <Switch>
+                        <Route exact path="/" component={PageHome}/>
+                        <UnsecuredRoute path="/signin" component={Signin}/>
+                        <SecuredRoute path="/admin" component={AdminRouter}/>
+                        <Route component={NoRouteMatch}/>
+                    </Switch>
+                </main>
+            </Router>
         );
     }
 }
+
 export default App;
