@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { NavigationBar } from '../NavigationBar';
 import { PageHome } from '../PageHome';
-import { PageSignin, PageSignout } from '../PageSign';
+import { PageSignin } from '../PageSign';
 import { AdminRouter } from '../PageAdmin';
 import { NoRouteMatch } from '../NoRouteMatch';
 import { SecuredRoute } from './SecuredRoute';
