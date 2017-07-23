@@ -4,11 +4,10 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import firebase from 'firebase';
 import { NavigationBar } from '../NavigationBar';
 import { PageHome } from '../PageHome';
 import { PageSignin, PageSignout } from '../PageSign';
-import { PageAdmin } from '../PageAdmin';
+import { AdminRouter } from '../PageAdmin';
 import { NoRouteMatch } from '../NoRouteMatch';
 import { SecuredRoute } from './SecuredRoute';
 import { UnsecuredRoute } from './UnsecuredRoute';
@@ -24,7 +23,7 @@ class PageRouter extends React.Component {
                         <Route exact path="/" component={PageHome}/>
                         <UnsecuredRoute path="/signin" component={PageSignin}/>
                         <SecuredRoute path="/signout" component={PageSignout}/>
-                        <SecuredRoute path="/admin" component={PageAdmin}/>
+                        <SecuredRoute path="/admin" component={AdminRouter}/>
                         <Route component={NoRouteMatch}/>
                     </Switch>
                 </div>
