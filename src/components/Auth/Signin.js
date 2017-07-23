@@ -1,7 +1,7 @@
 import React from 'react';
 import * as firebase from 'firebase';
 import { Redirect } from 'react-router-dom';
-//import PropTypes from 'prop-types';
+import './Signin.css';
 
 class Signin extends React.Component {
     state = {
@@ -43,21 +43,23 @@ class Signin extends React.Component {
     }
     render() {
         return (
-            <div className="login-view">
-                <h1>login</h1>
-                <form onSubmit={this.handleLogin}>
-                    <label>
-                        Username:
-                        <input type="email" value={this.state.username} onChange={this.setUsername} placeholder="Your user name" autoFocus required />
-                    </label>
-                    <label>
-                        Password:
-                        <input type="password" value={this.state.password} onChange={this.setPassword} placeholder="Your secret password" required />
-                    </label>
-                    <button>Login</button>
-                </form>
-                <p>{this.state.message}</p>
+            <div className="signin-view">
                 <div>{this.state.success?<Redirect to="/admin" />:''}</div>
+                <div className="signin-box">
+                    <h1>login</h1>
+                    <form onSubmit={this.handleLogin}>
+                        <label>
+                            Username:
+                            <input type="email" value={this.state.username} onChange={this.setUsername} placeholder="Your user name" autoFocus required />
+                        </label>
+                        <label>
+                            Password:
+                            <input type="password" value={this.state.password} onChange={this.setPassword} placeholder="Your secret password" required />
+                        </label>
+                        <button>Login</button>
+                    </form>
+                    <p>{this.state.message}</p>
+                </div>
             </div>
         )
     }
