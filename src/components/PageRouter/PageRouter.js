@@ -22,7 +22,6 @@ class PageRouter extends React.Component {
                     <Switch>
                         <Route exact path="/" component={PageHome}/>
                         <UnsecuredRoute path="/signin" component={PageSignin}/>
-                        <SecuredRoute path="/signout" component={PageSignout}/>
                         <SecuredRoute path="/admin" component={AdminRouter}/>
                         <Route component={NoRouteMatch}/>
                     </Switch>
