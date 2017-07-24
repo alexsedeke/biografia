@@ -6,6 +6,7 @@
     line-height: 50px;
     height: 50px;
     box-sizing: border-box;
+    font-size: .8rem;
     padding: 0 .5rem;
     display: flex;
     flex-direction: row;
@@ -15,7 +16,7 @@
     align-items: stretch;
 }
 
-.navigation-bar:before {
+._navigation-bar:before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -29,6 +30,7 @@
 
 .navigation-bar__link {
     margin: 0 .5rem;
+    text-transform: uppercase;
 }
 
 .navigation-bar__item {
