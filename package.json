@@ -22,7 +22,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "postcss": "postcss src/**/*.postcss -c ./postcss.config.js --dir src --base src --ext '.css'",
-    "postcss-watch": "postcss src/**/*.postcss -c ./postcss.config.js --dir src --base src --ext '.css' --watch",
+    "postcss-watch": "postcss src/**/*.pcss -c ./postcss.config.js --dir src --base src --ext '.css' --watch",
     "start": "npm-run-all -p postcss-watch start-react",
     "build": "npm run postcss && npm run build-react"
   }
