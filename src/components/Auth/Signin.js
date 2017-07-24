@@ -43,20 +43,26 @@ class Signin extends React.Component {
     }
     render() {
         return (
-            <div className="signin-view">
+            <div className="signin__view">
                 <div>{this.state.success?<Redirect to="/admin" />:''}</div>
-                <div className="signin-box">
-                    <h1>login</h1>
+                <div className="signin__box">
+                    <h1>Sign In</h1>
                     <form onSubmit={this.handleLogin}>
-                        <label>
-                            Username:
-                            <input type="email" value={this.state.username} onChange={this.setUsername} placeholder="Your user name" autoFocus required />
-                        </label>
-                        <label>
-                            Password:
-                            <input type="password" value={this.state.password} onChange={this.setPassword} placeholder="Your secret password" required />
-                        </label>
-                        <button>Login</button>
+                        <div className="form__subset">
+                            <label className="field__label">Username</label>
+                            <div className="field__wrapper">
+                                <input type="email" value={this.state.username} onChange={this.setUsername} placeholder="Your user name" autoFocus required />
+                            </div>
+                        </div>
+                        <div className="form__subset">
+                            <label className="field__label">Password</label>
+                            <div className="field__wrapper">
+                                <input type="password" value={this.state.password} onChange={this.setPassword} placeholder="Your secret password" required />
+                            </div>
+                        </div>
+                        <div className="form__subset--right">
+                            <button className="button">Login</button>
+                        </div>
                     </form>
                     <p>{this.state.message}</p>
                 </div>
