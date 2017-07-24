@@ -1,12 +1,14 @@
+@import './vars.postcss';
+
 ::placeholder {
-    color: rgb(207, 215, 230);
+    color: var(--hint-color);
 }
 
 
 .field {
     &__wrapper {
         overflow: hidden;
-        border: 1px solid rgb(207, 215, 230);
+        border: 1px solid var(--hint-color);
         border-radius: 4px;
 
         input {
@@ -20,7 +22,7 @@
     }
 
     &__label {
-        color: rgb(139, 153, 173);
+        color: var(--label-color);
         text-transform: uppercase;
         font-weight: 300;
         font-size: .875rem;
@@ -47,10 +49,10 @@
 .button {
     padding: .6rem 1rem;
     outline: 0;
-    border: 1ps solid rgb(131, 198,231);
+    border: 1ps solid var(--base-color);
     border: 0;
     border-radius: 4px;
-    background-color: rgb(131, 198,231);
+    background-color: var(--base-color);
     color: rgb(255, 255, 255);
     text-align: center;
     text-transform: uppercase;
