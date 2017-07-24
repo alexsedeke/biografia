@@ -1,5 +1,6 @@
-.signin-view {
-    height: 100%;
+.signin__view {
+    flex: 1 1 auto;
+    align-self: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -8,8 +9,17 @@
     align-items: center;
 }
 
-.signin-box {
+.signin__box {
     order: 0;
     flex: 0 1 auto;
     align-self: auto;
+    box-sizing: border-box;
+    padding: 1rem;
+    max-width: 400px;
+    min-width: 320px;
+    width: 50%;
 }
+
+.signin__box h1 {
+    text-align: center;
+}    
