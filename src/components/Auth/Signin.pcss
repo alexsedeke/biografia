@@ -1,25 +1,27 @@
-.signin__view {
-    flex: 1 1 auto;
-    align-self: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-content: flex-start;
-    align-items: center;
-}
+.signin {
+    &__view {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: flex-start;
+        align-items: center;
+        align-self: auto;
+        justify-content: center;
+    }
 
-.signin__box {
-    order: 0;
-    flex: 0 1 auto;
-    align-self: auto;
-    box-sizing: border-box;
-    padding: 1rem;
-    max-width: 400px;
-    min-width: 320px;
-    width: 50%;
-}
+    &__box {
+        flex: 0 1 auto;
+        align-self: auto;
+        order: 0;
+        box-sizing: border-box;
+        padding: 1rem;
+        min-width: 320px;
+        max-width: 400px;
+        width: 50%;
 
-.signin__box h1 {
-    text-align: center;
-}    
+        h1 {
+            text-align: center;
+        }
+    }
+}
