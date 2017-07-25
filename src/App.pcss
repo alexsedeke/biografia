@@ -1,9 +1,13 @@
+@import './styles/vars.postcss';
+
 .App {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: flex-start;
     align-content: stretch;
     align-items: stretch;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding-top: var(--navigation-bar-height);
     height: 100%;
 }
