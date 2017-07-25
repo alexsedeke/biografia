@@ -17,6 +17,20 @@
     font-size: .8rem;
     line-height: var(--navigation-bar-height);
 
+    &.glow {
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+
+        &:after {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--signal-color), var(--base-color));
+            content: '';
+        }
+    }
+
     &:before {
         position: absolute;
         top: 0;
@@ -29,9 +43,12 @@
         opacity: 1;
     }
 
+
     &__link {
         margin: 0 .5rem;
+        color: var(--base-color);
         text-transform: uppercase;
+        cursor: pointer;
     }
 
     &__item {
@@ -44,9 +61,5 @@
             align-self: auto;
             order: 0;
         }
-    }
-
-    &__placeholder {
-        height: var(--navigation-bar-height);
     }
 }
