@@ -61,7 +61,7 @@ class Signin extends React.Component {
                             </div>
                         </div>
                         <div className="form__subset--right">
-                            <button className="button">Login</button>
+                            <button className="button">Sign In</button>
                         </div>
                     </form>
                     <p>{this.state.message}</p>
