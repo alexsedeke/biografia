@@ -1,2 +1,4 @@
 export { AdminRouter } from './Router';
-export { Timeline } from './Timeline';
+export { Sections } from './Sections';
+export { Profile } from './Profile';
+export { Socials } from './Socials';
