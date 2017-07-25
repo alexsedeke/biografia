@@ -14,34 +14,28 @@ class NavigationBar extends React.Component {
 
     authenticated() {
         return (
-            <div className="navigation-bar__wrapper">
-               <div className="navigation-bar__placeholder"></div>
-               <nav className="navigation-bar">
-                    <div className="navigation-bar__item--flex">
-                        <Link className="navigation-bar__link" to="/">Home</Link>
-                    </div>
-                    <div className="navigation-bar__item">
-                        <Link className="navigation-bar__link" to="/admin">Admin</Link>
-                        <a className="navigation-bar__link" onClick={this.signout} >Sign Out</a>
-                    </div>
-               </nav>
-           </div>
+           <nav className="navigation-bar glow">
+                <div className="navigation-bar__item--flex">
+                    <Link className="navigation-bar__link" to="/">Biografia</Link>
+                </div>
+                <div className="navigation-bar__item">
+                    <Link className="navigation-bar__link" to="/admin">Admin</Link>
+                    <a className="navigation-bar__link" onClick={this.signout} >Sign Out</a>
+                </div>
+           </nav>
         )
     }
 
     unauthenticated() {
         return (
-            <div className="navigation-bar__wrapper">
-               <div className="navigation-bar__placeholder"></div>
-               <nav className="navigation-bar">
-                    <div className="navigation-bar__item--flex">
-                        <Link className="navigation-bar__link" to="/">Home</Link>
-                    </div>
-                    <div className="navigation-bar__item">
-                        <Link className="navigation-bar__link" to="/signin">Sign In</Link>
-                    </div>
-               </nav>
-           </div>
+           <nav className="navigation-bar">
+                <div className="navigation-bar__item--flex">
+                    <Link className="navigation-bar__link" to="/">Biografia</Link>
+                </div>
+                <div className="navigation-bar__item">
+                    <Link className="navigation-bar__link" to="/signin">Sign In</Link>
+                </div>
+           </nav>
         )
     }
 
