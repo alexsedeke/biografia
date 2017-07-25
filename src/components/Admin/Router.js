@@ -2,8 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
-  Link
+  Redirect
 } from 'react-router-dom';
 import { Menubar } from './Menubar';
 import { Profile } from './Profile';
