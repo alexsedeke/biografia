@@ -44,7 +44,7 @@ class Signin extends React.Component {
     render() {
         return (
             <div className="signin__view">
-                <div>{this.state.success?<Redirect to="/admin" />:''}</div>
+                <div>{this.state.success?<Redirect to="/settings" />:''}</div>
                 <div className="signin__box">
                     <h1>Sign In</h1>
                     <form onSubmit={this.handleLogin}>
