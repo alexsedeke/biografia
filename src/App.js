@@ -14,7 +14,7 @@ import {
     UnsecuredRoute
 } from './components/Auth';
 import { NoRouteMatch } from './components/NoRouteMatch';
-import { AdminRouter } from './components/Admin';
+import { SettingsRouter } from './components/Settings';
 import { PageHome } from './components/PageHome';
 import './App.css';
 
@@ -47,7 +47,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={PageHome}/>
                         <UnsecuredRoute path="/signin" component={Signin}/>
-                        <SecuredRoute path="/admin" component={AdminRouter}/>
+                        <SecuredRoute path="/settings" component={SettingsRouter}/>
                         <Route component={NoRouteMatch}/>
                     </Switch>
                 </main>
