@@ -1,0 +1,24 @@
+.column-view {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    .column {
+        flex: 1 1 auto;
+        align-self: auto;
+
+        &:first-child {
+            order: 0;
+            width: 25%;
+        }
+
+        &:last-child {
+            order: 1;
+            margin-left: 8.3333%;
+            width: 66.66667%;
+        }
+    }
+}
