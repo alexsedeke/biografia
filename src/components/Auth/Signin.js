@@ -49,15 +49,15 @@ class Signin extends React.Component {
                     <h1>Sign In</h1>
                     <form onSubmit={this.handleLogin}>
                         <div className="form__subset">
-                            <label className="field__label">Username</label>
+                            <label htmlFor="email" className="field__label">Username</label>
                             <div className="field__wrapper">
-                                <input type="email" value={this.state.username} onChange={this.setUsername} placeholder="Your user name" autoFocus required />
+                                <input type="email" id="email" value={this.state.username} onChange={this.setUsername} placeholder="Your user name" autoFocus required />
                             </div>
                         </div>
                         <div className="form__subset">
-                            <label className="field__label">Password</label>
+                            <label htmlFor="password" className="field__label">Password</label>
                             <div className="field__wrapper">
-                                <input type="password" value={this.state.password} onChange={this.setPassword} placeholder="Your secret password" required />
+                                <input type="password" id="password" value={this.state.password} onChange={this.setPassword} placeholder="Your secret password" required />
                             </div>
                         </div>
                         <div className="form__subset--right">
