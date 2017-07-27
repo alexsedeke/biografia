@@ -88,8 +88,6 @@ class Profile extends React.Component {
     handleOnBlur = (evt) => {
         let field = evt.target.id;
         let value = evt.target.value;
-        let {fielding: id, val: value} = evt.target;
-        console.log(fielding, val);
 
         if (this.state[field].origin !== value) {
             this.db.child('profile').update( { [field]: value } ).then( () => {
