@@ -1,56 +1,41 @@
 import React from 'react';
 import update from 'immutability-helper';
 import * as firebase from 'firebase';
+import { Field } from '../Field';
 
 class Profile extends React.Component {
     state = {
         title: {
             value: '',
-            origin: '',
-            required: false,
-            message: ''
+            origin: ''
         },
         firstname: {
             value: '',
-            origin: '',
-            required: true,
-            message: ''
+            origin: ''
         },
         lastname: {
             value: '',
-            origin: '',
-            required: true,
-            message: ''
+            origin: ''
         },
         email: {
             value: '',
-            origin: '',
-            required: false,
-            message: ''
+            origin: ''
         },
         occupation: {
             value: '',
-            origin: '',
-            required: false,
-            message: ''
+            origin: ''
         },
         country: {
             value: '',
-            origin: '',
-            required: false,
-            message: ''
+            origin: ''
         },
         city: {
             value: '',
-            origin: '',
-            required: false,
-            message: ''
+            origin: ''
         },
         image: {
             value: '',
-            origin: '',
-            required: false,
-            message: ''
+            origin: ''
         }
     }
 
@@ -84,7 +69,6 @@ class Profile extends React.Component {
         } );
     }
 
-
     handleOnBlur = (evt) => {
         let field = evt.target.id;
         let value = evt.target.value;
@@ -109,54 +93,13 @@ class Profile extends React.Component {
                     content column 1
                 </div>
                 <div className="column">
-                    <div className="form__subset">
-                        <label htmlFor="title" className="field__label">Title</label>
-                        <div className="field__wrapper">
-                            <input type="text" id="title" value={this.state.title.value} onChange={this.handleFieldUpdate} onBlur={this.handleOnBlur} placeholder="Title" />
-                        </div>
-                    </div>
-
-                    <div className="form__subset">
-                        <label htmlFor="firstname" className="field__label">Firstname</label>
-                        <div className="field__wrapper">
-                            <input type="text" id="firstname" value={this.state.firstname.value} onChange={this.handleFieldUpdate} onBlur={this.handleOnBlur} placeholder="Firstname" />
-                        </div>
-                    </div>
-
-                    <div className="form__subset">
-                        <label htmlFor="lastname" className="field__label">Lastname</label>
-                        <div className="field__wrapper">
-                            <input type="text" id="lastname" value={this.state.lastname.value} onChange={this.handleFieldUpdate} onBlur={this.handleOnBlur} placeholder="Lastname" />
-                        </div>
-                    </div>
-
-                    <div className="form__subset">
-                        <label htmlFor="email" className="field__label">Email</label>
-                        <div className="field__wrapper">
-                            <input type="text" id="email" value={this.state.email.value} onChange={this.handleFieldUpdate} onBlur={this.handleOnBlur} placeholder="Email" />
-                        </div>
-                    </div>
-
-                    <div className="form__subset">
-                        <label htmlFor="occupation" className="field__label">Occupation</label>
-                        <div className="field__wrapper">
-                            <input type="text" id="occupation" value={this.state.occupation.value} onChange={this.handleFieldUpdate} onBlur={this.handleOnBlur} placeholder="Occupation" />
-                        </div>
-                    </div>
-
-                    <div className="form__subset">
-                        <label htmlFor="country" className="field__label">Country</label>
-                        <div className="field__wrapper">
-                            <input type="text" id="country" value={this.state.country.value} onChange={this.handleFieldUpdate} onBlur={this.handleOnBlur} placeholder="Country" />
-                        </div>
-                    </div>
-
-                    <div className="form__subset">
-                        <label htmlFor="city" className="field__label">City</label>
-                        <div className="field__wrapper">
-                            <input type="text" id="city" value={this.state.city.value} onChange={this.handleFieldUpdate} onBlur={this.handleOnBlur} placeholder="City" />
-                        </div>
-                    </div>
+                    <Field type="text" id="title" label="Title" placeholder="Title" value={this.state.title.value} handleUpdate={this.handleFieldUpdate} handleBlur={this.handleOnBlur} />
+                    <Field type="text" id="firstname" label="Firstname" placeholder="Firstname" value={this.state.firstname.value} handleUpdate={this.handleFieldUpdate} handleBlur={this.handleOnBlur} />
+                    <Field type="text" id="lastname" label="Lastname" placeholder="Lastname" value={this.state.lastname.value} handleUpdate={this.handleFieldUpdate} handleBlur={this.handleOnBlur} />
+                    <Field type="text" id="email" label="Email" placeholder="Email" value={this.state.email.value} handleUpdate={this.handleFieldUpdate} handleBlur={this.handleOnBlur} />
+                    <Field type="text" id="occupation" label="Occupation" placeholder="Occupation" value={this.state.occupation.value} handleUpdate={this.handleFieldUpdate} handleBlur={this.handleOnBlur} />
+                    <Field type="text" id="country" label="Country" placeholder="Country" value={this.state.country.value} handleUpdate={this.handleFieldUpdate} handleBlur={this.handleOnBlur} />
+                    <Field type="text" id="city" label="City" placeholder="City" value={this.state.city.value} handleUpdate={this.handleFieldUpdate} handleBlur={this.handleOnBlur} />
                 </div>
             </div>
         );
