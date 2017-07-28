@@ -22,6 +22,18 @@ class App extends Component {
     state = {
         currentUser: null
     }
+    
+    componentDidMount() {
+        const ele = document.getElementById( 'ipl-progress-indicator' )
+        if( ele ) {
+            setTimeout( () => {
+                ele.classList.add( 'available' )
+                setTimeout( () => {
+                    ele.outerHTML = ''
+                }, 2000 )
+            }, 1000 )
+        }
+    }
 
     componentWillMount() {
         firebase.auth().onAuthStateChanged(  user => {
