@@ -2,6 +2,7 @@ import React from 'react';
 import update from 'immutability-helper';
 import * as firebase from 'firebase';
 import { Field } from '../Field';
+import './profile-image.css';
 
 class Profile extends React.Component {
     state = {
@@ -33,9 +34,10 @@ class Profile extends React.Component {
             value: '',
             origin: ''
         },
-        image: {
-            value: '',
-            origin: ''
+        image: '',
+        profileimage: {
+            path: '',
+            url: ''
         }
     }
 
@@ -47,17 +49,54 @@ class Profile extends React.Component {
     componentDidMount() {
         this.db.child('profile').on('value', (snapshot) => {
             snapshot.forEach((childSnap) => {
-                if ((typeof this.state[childSnap.key] === 'object') && (childSnap.val()) ) {
+                if (typeof this.state[childSnap.key] === 'object' ) {
                     this.setState({
                         [childSnap.key]: {
                             value: childSnap.val(),
                             origin: childSnap.val()
                         }
                     });
+                } else {
+                    this.setState({
+                        [childSnap.key]: childSnap.val()
+                    });
                 }
             });
+            this.setImageUrl();
         } );
     }
+
+    setImageUrl() {
+        if( this.state.image !== this.state.profileimage.path ) {
+            if( !this.state.image ) {
+                this.setState( {
+                    profileimage: {
+                        path: '',
+                        url: ''
+                    }
+                } );
+            } else {
+                firebase.storage().ref( this.state.image ).getDownloadURL().then( (url) => {
+                    this.setState( {
+                        profileimage: {
+                            path: this.state.image,
+                            url: url
+                        }
+                    } );
+                });
+            }
+        }
+    }
+
+    deleteImage( path) {
+        let storageRef = firebase.storage().ref( path );
+        storageRef.delete().then( () => {
+            console.log('old file successfuly deteted', path);
+        } ).catch( (err) => {
+            console.log('old file could not be deteted');
+        } );
+    }
+
 
     handleFieldUpdate = ( evt ) => {
         this.setState( {
@@ -74,23 +113,45 @@ class Profile extends React.Component {
         let value = evt.target.value;
 
         if (this.state[field].origin !== value) {
-            this.db.child('profile').update( { [field]: value } ).then( () => {
-                this.setState( {
-                    [ field ]: update( this.state[ field ], {
-                        origin: {
-                            $set: value
-                        }
-                    } )
-                } );
-            });
+            this.db.child('profile').update( { [field]: value } )
         }
+    }
+
+    handleOnFileChange = (evt) => {
+        let file = evt.target.files[0];
+        let path = 'profile/public/' + file.name;
+        let storage = firebase.storage().ref( path );
+        let uploadTask = storage.put( file );
+        uploadTask.on('state_changed',
+            // progress
+            (snapshot) => {
+                let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('percentage:', percentage);
+                // this.setState({
+                //     image: update(this.state.image, {progress: {$set: percentage}})
+                // });
+            },
+            // error handleOnFileChange
+            (err) => {
+                console.log(err);
+            },
+            // completed
+            () => {
+                this.deleteImage( this.state.image );
+                this.db.child('profile').update( { image: path } );
+            }
+        );
     }
 
     render() {
         return (
             <div className="column-view limit-width">
                 <div className="column">
-                    content column 1
+                    <picture className="profile-image">
+                        <img src={this.state.profileimage.url} alt="Profile" />
+                    </picture>
+                    <input type="file" id="profile-upload" name="profile-upload" className="inputfile" onChange={this.handleOnFileChange} />
+                    <label htmlFor="profile-upload">Choose a file</label>
                 </div>
                 <div className="column">
                     <Field type="text" id="title" label="Title" placeholder="Title" value={this.state.title.value} handleUpdate={this.handleFieldUpdate} handleBlur={this.handleOnBlur} />
