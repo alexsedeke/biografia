@@ -12,12 +12,18 @@ class Notification extends React.Component {
             this.setState({
                 notifications: update( this.state.notifications, {[notification.timestamp]: {$set: notification}})
             });
+            this.closeTimeout( notification.timestamp );
         });
     }
 
+    closeTimeout( key ) {
+        setTimeout(() => {
+            this.closeNotification( key );
+        }, 3000);
+    }
+
     listNotifications() {
-        let _notifications = Object.entries(this.state.notifications);
-        return _notifications.map( notification => {
+        return Object.entries(this.state.notifications).map( notification => {
             return <li key={notification[0]} className={notification[1].type}>
                         {notification[1].message}
                         <span onClick={() => this.closeNotification(notification[0])}>close</span>
