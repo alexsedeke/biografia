@@ -2,6 +2,7 @@ import React from 'react';
 import update from 'immutability-helper';
 import * as firebase from 'firebase';
 import { Field } from '../Field';
+import { notifications } from '../../service/notifications';
 import './profile-image.css';
 
 class Profile extends React.Component {
@@ -93,7 +94,7 @@ class Profile extends React.Component {
         storageRef.delete().then( () => {
             console.log('old file successfuly deteted', path);
         } ).catch( (err) => {
-            console.log('old file could not be deteted');
+            notifications.add(`Old image file could not be removed on storage.`);
         } );
     }
 
@@ -113,7 +114,7 @@ class Profile extends React.Component {
         let value = evt.target.value;
 
         if (this.state[field].origin !== value) {
-            this.db.child('profile').update( { [field]: value } )
+            this.db.child('profile').update( { [field]: value } );
         }
     }
 
@@ -135,6 +136,7 @@ class Profile extends React.Component {
             // error handleOnFileChange
             (err) => {
                 console.log(err);
+                notifications.add(`Could not upload the image file.`);
             },
             // completed
             () => {
