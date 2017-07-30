@@ -62,14 +62,17 @@ class Profile extends React.Component {
                         [childSnap.key]: childSnap.val()
                     });
                 }
-            });
-            this.setImageUrl();
+
+                if (childSnap.key === 'image') {
+                    this.setImageUrl(childSnap.val());
+                }
+            } );
         } );
     }
 
-    setImageUrl() {
-        if( this.state.image !== this.state.profileimage.path ) {
-            if( !this.state.image ) {
+    setImageUrl(path) {
+        if( path !== this.state.profileimage.path ) {
+            if( !path ) {
                 this.setState( {
                     profileimage: {
                         path: '',
@@ -77,10 +80,10 @@ class Profile extends React.Component {
                     }
                 } );
             } else {
-                firebase.storage().ref( this.state.image ).getDownloadURL().then( (url) => {
+                firebase.storage().ref( path ).getDownloadURL().then( (url) => {
                     this.setState( {
                         profileimage: {
-                            path: this.state.image,
+                            path: path,
                             url: url
                         }
                     } );
@@ -91,9 +94,7 @@ class Profile extends React.Component {
 
     deleteImage( path) {
         let storageRef = firebase.storage().ref( path );
-        storageRef.delete().then( () => {
-            console.log('old file successfuly deteted', path);
-        } ).catch( (err) => {
+        storageRef.delete().catch( (err) => {
             notifications.add(`Old image file could not be removed on storage.`);
         } );
     }
@@ -115,6 +116,7 @@ class Profile extends React.Component {
 
         if (this.state[field].origin !== value) {
             this.db.child('profile').update( { [field]: value } );
+            notifications.add(`Update field ${field}.`);
         }
     }
 
