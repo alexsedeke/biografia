@@ -16,13 +16,14 @@ import {
 import { NoRouteMatch } from './components/NoRouteMatch';
 import { SettingsRouter } from './components/Settings';
 import { PageHome } from './components/PageHome';
+import { notifications } from './service/notifications';
 import './App.css';
 
 class App extends Component {
     state = {
         currentUser: null
     }
-    
+
     componentDidMount() {
         const ele = document.getElementById( 'ipl-progress-indicator' )
         if( ele ) {
@@ -33,6 +34,11 @@ class App extends Component {
                 }, 2000 )
             }, 1000 )
         }
+
+        // handle notifications
+        notifications.on('notification', (notification) => {
+            console.log(notification.message);
+        });
     }
 
     componentWillMount() {
