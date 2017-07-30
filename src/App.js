@@ -16,7 +16,7 @@ import {
 import { NoRouteMatch } from './components/NoRouteMatch';
 import { SettingsRouter } from './components/Settings';
 import { PageHome } from './components/PageHome';
-import { notifications } from './service/notifications';
+import { Notification } from './components/Notification';
 import './App.css';
 
 class App extends Component {
@@ -34,11 +34,6 @@ class App extends Component {
                 }, 2000 )
             }, 1000 )
         }
-
-        // handle notifications
-        notifications.on('notification', (notification) => {
-            console.log(notification.message);
-        });
     }
 
     componentWillMount() {
@@ -61,7 +56,7 @@ class App extends Component {
             <Router>
                 <main className="App">
                     <NavigationBar />
-
+                    <Notification />
                     <Switch>
                         <Route exact path="/" component={PageHome}/>
                         <UnsecuredRoute path="/signin" component={Signin}/>
