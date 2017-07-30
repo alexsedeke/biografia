@@ -14,7 +14,7 @@ export class Notifications extends EventEmitter {
         let messageObject = {
             type: type,
             message: message,
-            timestamp: new Date()
+            timestamp: Date.now()
         }
 
         this.messages.push( messageObject );
