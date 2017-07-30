@@ -125,6 +125,7 @@ class Profile extends React.Component {
         uploadTask.on('state_changed',
             // progress
             (snapshot) => {
+                // TODO: create progress indicator insode button
                 let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log('percentage:', percentage);
                 // this.setState({

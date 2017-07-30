@@ -69,6 +69,8 @@
 	opacity: 0;
 
     & + label {
+        position: relative;
+        z-index: 10;
         display: inline-block;
         padding: 0.625rem 1.25rem;
         border: 1px solid var(--hint-color);
@@ -77,6 +79,16 @@
         font-weight: 400;
         font-size: 1rem;
         cursor: pointer;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            background-color: var(--base-color);
+            content: '';
+        }
 
         & * {
 	        pointer-events: none;
