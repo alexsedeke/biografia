@@ -52,10 +52,34 @@
     border: 1ps solid var(--base-color);
     border: 0;
     border-radius: 4px;
-    background-color: var(--base-color);
     color: rgb(255, 255, 255);
     text-align: center;
     text-transform: uppercase;
     font-size: .9rem;
-    cursor: pointer;
+    cursor: pointer;epqrtwji
+    background-color: var(--base-color);
+}
+
+.inputfile {
+	position: absolute;
+	z-index: -1;
+	overflow: hidden;
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+
+    & + label {
+        display: inline-block;
+        padding: 0.625rem 1.25rem;
+        border: 1px solid var(--hint-color);
+        border-radius: 4px;
+        background-color: transparent;
+        font-weight: 400;
+        font-size: 1rem;
+        cursor: pointer;
+
+        & * {
+	        pointer-events: none;
+        }
+    }
 }
