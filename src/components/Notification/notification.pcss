@@ -1,0 +1,82 @@
+@import '../../styles/vars.postcss';
+
+.notification-list {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9200;
+    margin: 0;
+    list-style: none;
+
+    .notification {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: stretch;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        margin: 20px;
+        border-radius: 4px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: inset 0 0 3px var(--shadow-color);
+
+        &__message {
+            flex: 1 1 auto;
+            align-self: auto;
+            order: 0;
+            padding: 20px 30px;
+            font-size: 1;
+        }
+
+        &__buttonbar {
+            flex: 0 1 auto;
+            align-self: auto;
+            order: 0;
+            padding: 20px 30px;
+            border-left: 1px solid var(--shadow-color);
+        }
+
+        .close-button svg {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        &.info {
+            background-color: var(--base-color);
+            color: rgb(255, 255, 255);
+
+            .close-button svg {
+                fill: rgb(255, 255, 255);
+            }
+        }
+
+        &.error {
+            background-color: red;
+            color: rgb(255, 255, 255);
+
+            .close-button svg {
+                fill: rgb(255, 255, 255);
+            }
+        }
+    }
+}
+
+.example-enter {
+    transform: translate( 200vh, 0);
+}
+
+.example-enter.example-enter-active {
+    transition: 1700ms;
+    transform: translate( 0, 0);
+}
+
+.example-leave {
+    transform: translate( 0, 0);
+}
+
+.example-leave.example-leave-active {
+    transition: 1700ms;
+    transform: translate( 200vh, 0 );
+}
