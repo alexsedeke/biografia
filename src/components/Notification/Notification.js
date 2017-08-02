@@ -55,7 +55,7 @@ class Notification extends React.Component {
         return (
             <div className="notifications">
                 <ul className="notification-list">
-                    <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={1700} transitionLeaveTimeout={1700}>
+                    <ReactCSSTransitionGroup transitionName="notification" transitionEnterTimeout={1700} transitionLeaveTimeout={1700}>
                         { this.listNotifications() }
                     </ReactCSSTransitionGroup>
                 </ul>

@@ -60,23 +60,23 @@
                 fill: rgb(255, 255, 255);
             }
         }
+
+        &-enter {
+            transform: translate( 200vh, 0);
+
+            &.notification-enter-active {
+                transition: 1700ms;
+                transform: translate( 0, 0);
+            }
+        }
+
+        &-leave {
+            transform: translate( 0, 0);
+
+            &.notification-leave-active {
+                transition: 1700ms;
+                transform: translate( 200vh, 0 );
+            }
+        }
     }
-}
-
-.example-enter {
-    transform: translate( 200vh, 0);
-}
-
-.example-enter.example-enter-active {
-    transition: 1700ms;
-    transform: translate( 0, 0);
-}
-
-.example-leave {
-    transform: translate( 0, 0);
-}
-
-.example-leave.example-leave-active {
-    transition: 1700ms;
-    transform: translate( 200vh, 0 );
 }
