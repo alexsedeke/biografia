@@ -150,11 +150,13 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <div className="column-view limit-width">
+            <div className="settings-profile column-view limit-width">
                 <div className="column">
-                    <picture className="profile-image">
-                        <img src={this.state.profileimage.url} alt="Profile" />
-                    </picture>
+                    <div>
+                        <picture className="profile-image">
+                            <img src={this.state.profileimage.url} alt="Profile" />
+                        </picture>
+                    </div>
                     <input type="file" id="profile-upload" name="profile-upload" className="inputfile" onChange={this.handleOnFileChange} />
                     <label htmlFor="profile-upload">Choose a file</label>
                 </div>
