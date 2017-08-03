@@ -12,14 +12,23 @@ class Socials extends React.Component {
 
     constructor() {
         super();
-        this.db = firebase.database().ref();
+        this.dbItemRef = this.getDBRef().child('socials');
+    }
+
+    getDBRef() {
+        return firebase.database().ref();
     }
 
     componentDidMount() {
-        this.db.child('socials').on('value', (snapshot) => {
-            snapshot.forEach((childSnap) => {
+        this.listenForSocials();
+    }
+
+
+    listenForSocials() {
+        this.dbItemRef.on('value', (socials) => {
+            socials.forEach((socialRecord) => {
                 this.setState({
-                    socials: update(this.state.socials, {[childSnap.key]: {$set: childSnap.val()}})
+                    socials: update(this.state.socials, {[socialRecord.key]: {$set: socialRecord.val()}})
                 });
             } );
         } );
@@ -40,11 +49,11 @@ class Socials extends React.Component {
     }
 
     removeSocialItem( key ) {
-        this.db.child(`/socials/${key}`).remove();
+        this.dbItemRef.child(key).remove();
     }
 
     handleAddSocial = ( evt ) => {
-        this.db.child('socials').push({
+        this.dbItemRef.push({
             sort: 1,
             caption: 'new social connection',
             link: 'please set your connection link',
