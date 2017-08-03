@@ -12,7 +12,24 @@ class Sections extends React.Component {
 
     constructor() {
         super();
-        this.db = firebase.database().ref();
+        this.dbItemRef = this.getDBRef().child('socials');
+    }
+
+
+    getDBRef() {
+        return firebase.database().ref();
+    }
+
+
+    componentDidMount() {
+        this.dbItemRef.on('value', (snap) => {
+            console.log('something');
+        });
+    }
+
+
+    componentWillUnmount() {
+        this.dbItemRef.off();
     }
 
     render() {
