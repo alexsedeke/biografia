@@ -82,6 +82,26 @@ class Profile extends React.Component {
         } );
     }
 
+    handleFieldUpdate = ( evt ) => {
+        this.setState( {
+            [ evt.target.id ]: update( this.state[ evt.target.id ], {
+                value: {
+                    $set: evt.target.value
+                }
+            } )
+        } );
+    }
+
+    handleOnBlur = (evt) => {
+        let field = evt.target.id;
+        let value = evt.target.value;
+
+        if (this.state[field].origin !== value) {
+            this.dbItemRef.update( { [field]: value } );
+            notifications.add(`Update field ${field}.`);
+        }
+    }
+
     setImageUrl(path) {
         if( path !== this.state.profileimage.path ) {
             if( !path ) {
@@ -111,27 +131,6 @@ class Profile extends React.Component {
         } );
     }
 
-
-    handleFieldUpdate = ( evt ) => {
-        this.setState( {
-            [ evt.target.id ]: update( this.state[ evt.target.id ], {
-                value: {
-                    $set: evt.target.value
-                }
-            } )
-        } );
-    }
-
-    handleOnBlur = (evt) => {
-        let field = evt.target.id;
-        let value = evt.target.value;
-
-        if (this.state[field].origin !== value) {
-            this.db.child('profile').update( { [field]: value } );
-            notifications.add(`Update field ${field}.`);
-        }
-    }
-
     handleOnFileChange = (evt) => {
         let file = evt.target.files[0];
         let path = 'profile/public/' + file.name;
@@ -155,7 +154,7 @@ class Profile extends React.Component {
             // completed
             () => {
                 this.deleteImage( this.state.image );
-                this.db.child('profile').update( { image: path } );
+                this.dbItemRef.update( { image: path } );
             }
         );
     }
