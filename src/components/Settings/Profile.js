@@ -3,7 +3,7 @@ import update from 'immutability-helper';
 import * as firebase from 'firebase';
 import { Field } from '../Field';
 import { notifications } from '../../service/notifications';
-import './profile-image.css';
+import './profile.css';
 
 class Profile extends React.Component {
     state = {
