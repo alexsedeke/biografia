@@ -23,6 +23,9 @@ class Socials extends React.Component {
         this.listenForSocials();
     }
 
+    componentWillUnmount() {
+        this.dbItemRef.off();
+    }
 
     listenForSocials() {
         this.dbItemRef.on('value', (socials) => {
