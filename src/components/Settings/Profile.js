@@ -44,11 +44,19 @@ class Profile extends React.Component {
 
     constructor() {
         super();
-        this.db = firebase.database().ref();
+        this.dbItemRef = this.getDBRef().child('profile');
+    }
+
+    getDBRef() {
+        return firebase.database().ref();
+    }
+
+    componentWillUnmount() {
+        this.dbItemRef.off()
     }
 
     componentDidMount() {
-        this.db.child('profile').on('value', (snapshot) => {
+        this.dbItemRef.on('value', (snapshot) => {
             snapshot.forEach((childSnap) => {
                 if (typeof this.state[childSnap.key] === 'object' ) {
                     this.setState({
