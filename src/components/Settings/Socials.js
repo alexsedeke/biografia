@@ -27,13 +27,23 @@ class Socials extends React.Component {
 
     listSocialItems() {
         return Object.entries(this.state.socials).map( social => {
-            return <li key={social[0]} className="social__link">
-                        {social[1].caption}, {social[1].link}, {social[1].icon}
+            return <li key={social[0]} className="social__item">
+                        <div className="social__item-content">
+                            {social[1].caption}, {social[1].link}, {social[1].icon}
+                        </div>
+
+                        <div className="social__item-delete" onClick={() => this.removeSocialItem(social[0])}>
+                            delete
+                        </div>
                    </li>
         });
     }
 
-    handleAddSocial = (evt) => {
+    removeSocialItem( key ) {
+        this.db.child(`/socials/${key}`).remove();
+    }
+
+    handleAddSocial = ( evt ) => {
         this.db.child('socials').push({
             sort: 1,
             caption: 'new social connection',
