@@ -56,6 +56,10 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
+        this.listenForProfile();
+    }
+
+    listenForProfile() {
         this.dbItemRef.on('value', (snapshot) => {
             snapshot.forEach((childSnap) => {
                 if (typeof this.state[childSnap.key] === 'object' ) {
