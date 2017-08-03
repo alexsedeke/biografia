@@ -15,11 +15,9 @@ class Sections extends React.Component {
         this.dbItemRef = this.getDBRef().child('socials');
     }
 
-
     getDBRef() {
         return firebase.database().ref();
     }
-
 
     componentDidMount() {
         this.dbItemRef.on('value', (snap) => {
