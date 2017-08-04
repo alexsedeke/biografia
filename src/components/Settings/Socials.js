@@ -1,8 +1,8 @@
 import React from 'react';
 import update from 'immutability-helper';
 import * as firebase from 'firebase';
-import { Field } from '../Field';
-import { notifications } from '../../service/notifications';
+//import { Field } from '../Field';
+//import { notifications } from '../../service/notifications';
 import './socials.css';
 
 class Socials extends React.Component {
@@ -15,8 +15,8 @@ class Socials extends React.Component {
         this.dbItemRef = this.getDBRef().child('socials');
     }
 
-    getDBRef() {
-        return firebase.database().ref();
+    getDBRef( key ) {
+        return firebase.database().ref( key );
     }
 
     componentDidMount() {
@@ -35,6 +35,14 @@ class Socials extends React.Component {
                 });
             } );
         } );
+
+        this.dbItemRef.on('child_removed', (removedSocial) => {
+            let _socials = this.state.socials;
+            delete(_socials[removedSocial.key]);
+            this.setState({
+                socials: _socials
+            });
+        })
     }
 
     listSocialItems() {
@@ -52,7 +60,11 @@ class Socials extends React.Component {
     }
 
     removeSocialItem( key ) {
-        this.dbItemRef.child(key).remove();
+        this.dbItemRef.child(key).remove((error) => {
+            if (error) {
+                // call notification
+            }
+        });
     }
 
     handleAddSocial = ( evt ) => {
