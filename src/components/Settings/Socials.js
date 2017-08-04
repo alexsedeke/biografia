@@ -19,18 +19,34 @@ class Socials extends React.Component {
         return firebase.database().ref( key );
     }
 
+    /**
+     * Set state only if component is mounted.
+     * This ensure listners will setState only on mounted coponents.
+     * @param {object} value
+     */
+    setMountedState( value ) {
+        if (this._isMounted === true) {
+            this.setState( value );
+        }
+    }
+
     componentDidMount() {
         this.listenForSocials();
     }
 
+    componentWillMount() {
+        this._isMounted = true;
+    }
+
     componentWillUnmount() {
+        this._isMounted = false;
         this.dbItemRef.off();
     }
 
     listenForSocials() {
         this.dbItemRef.on('value', (socials) => {
             socials.forEach((socialRecord) => {
-                this.setState({
+                this.setMountedState({
                     socials: update(this.state.socials, {[socialRecord.key]: {$set: socialRecord.val()}})
                 });
             } );
@@ -39,7 +55,7 @@ class Socials extends React.Component {
         this.dbItemRef.on('child_removed', (removedSocial) => {
             let _socials = this.state.socials;
             delete(_socials[removedSocial.key]);
-            this.setState({
+            this.setMountedState({
                 socials: _socials
             });
         })
