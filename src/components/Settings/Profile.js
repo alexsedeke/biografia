@@ -51,26 +51,37 @@ class Profile extends React.Component {
         return firebase.database().ref();
     }
 
-    componentWillUnmount() {
-        this.dbItemRef.off()
+    setMountedState( value ) {
+        if (this._isMounted === true) {
+            this.setState( value );
+        }
     }
 
     componentDidMount() {
         this.listenForProfile();
     }
 
+    componentWillMount() {
+        this._isMounted = true;
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+        this.dbItemRef.off()
+    }
+
     listenForProfile() {
         this.dbItemRef.on('value', (snapshot) => {
             snapshot.forEach((childSnap) => {
                 if (typeof this.state[childSnap.key] === 'object' ) {
-                    this.setState({
+                    this.setMountedState({
                         [childSnap.key]: {
                             value: childSnap.val(),
                             origin: childSnap.val()
                         }
                     });
                 } else {
-                    this.setState({
+                    this.setMountedState({
                         [childSnap.key]: childSnap.val()
                     });
                 }
@@ -83,7 +94,7 @@ class Profile extends React.Component {
     }
 
     handleFieldUpdate = ( evt ) => {
-        this.setState( {
+        this.setMountedState( {
             [ evt.target.id ]: update( this.state[ evt.target.id ], {
                 value: {
                     $set: evt.target.value
@@ -105,7 +116,7 @@ class Profile extends React.Component {
     setImageUrl(path) {
         if( path !== this.state.profileimage.path ) {
             if( !path ) {
-                this.setState( {
+                this.setMountedState( {
                     profileimage: {
                         path: '',
                         url: ''
@@ -113,7 +124,7 @@ class Profile extends React.Component {
                 } );
             } else {
                 firebase.storage().ref( path ).getDownloadURL().then( (url) => {
-                    this.setState( {
+                    this.setMountedState( {
                         profileimage: {
                             path: path,
                             url: url
