@@ -95,3 +95,19 @@
         }
     }
 }
+
+.ordinary-field {
+    box-sizing: border-box;
+    margin: 0 1rem 0 0;
+    padding: .6rem;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    color: var(--headline-color);
+    font-size: 1rem;
+
+    &:focus {
+        border-bottom: 1px solid var(--hint-color);
+        color: var(--text-color);
+    }
+}
