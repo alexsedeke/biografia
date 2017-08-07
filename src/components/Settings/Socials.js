@@ -75,9 +75,9 @@ class Socials extends React.Component {
         return Object.entries(this.state.socials).map( social => {
             return <li key={social[0]} className="social__item">
                         <div className="social__item-content">
-                            <input type="text" value={social[1].caption} data-key={social[0]} data-field="caption" onBlur={this.handleSave} onChange={this.handleFieldUpdate} placeholder="Name" className="ordinaryField" />
-                            <input type="text" value={social[1].link} data-key={social[0]} data-field="link" onBlur={this.handleSave} onChange={this.handleFieldUpdate} className="ordinaryField" placeholder="Link to social account" />
-                            <input type="text" value={social[1].icon} data-key={social[0]} data-field="icon" onBlur={this.handleSave} onChange={this.handleFieldUpdate} className="ordinaryField" placeholder="Link to sicial icon" />
+                            <input type="text" value={social[1].caption} data-key={social[0]} data-field="caption" onBlur={this.handleSave} onChange={this.handleFieldUpdate} className="ordinary-field" placeholder="Name" />
+                            <input type="text" value={social[1].link} data-key={social[0]} data-field="link" onBlur={this.handleSave} onChange={this.handleFieldUpdate} className="ordinary-field" placeholder="Link to social account" />
+                            <input type="text" value={social[1].icon} data-key={social[0]} data-field="icon" onBlur={this.handleSave} onChange={this.handleFieldUpdate} className="ordinary-field" placeholder="Link to sicial icon" />
                         </div>
 
                         <div className="social__item-delete" onClick={() => this.removeSocialItem(social[0])}>
