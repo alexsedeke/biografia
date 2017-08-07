@@ -2,7 +2,7 @@ import React from 'react';
 import update from 'immutability-helper';
 import * as firebase from 'firebase';
 //import { Field } from '../Field';
-//import { notifications } from '../../service/notifications';
+import { notifications } from '../../service/notifications';
 import './socials.css';
 
 class Socials extends React.Component {
@@ -90,7 +90,7 @@ class Socials extends React.Component {
     removeSocialItem( key ) {
         this.dbItemRef.child(key).remove((error) => {
             if (error) {
-                // call notification
+                notifications.add(`Could not remove social entry.`, 'error');
             }
         });
     }
