@@ -61,11 +61,23 @@ class Socials extends React.Component {
         })
     }
 
+    handleFieldUpdate = (evt) => {
+        this.setState({
+            socials: update(this.state.socials, { [evt.target.dataset.key]: {[evt.target.dataset.field]: {$set: evt.target.value} } })
+        });
+    }
+
+    handleSave = (evt) => {
+        this.getDBRef(`/socials/${[evt.target.dataset.key]}`).update({[evt.target.dataset.field]: evt.target.value});
+    }
+
     listSocialItems() {
         return Object.entries(this.state.socials).map( social => {
             return <li key={social[0]} className="social__item">
                         <div className="social__item-content">
-                            {social[1].caption}, {social[1].link}, {social[1].icon}
+                            <input type="text" value={social[1].caption} data-key={social[0]} data-field="caption" onBlur={this.handleSave} onChange={this.handleFieldUpdate} placeholder="Name" className="ordinaryField" />
+                            <input type="text" value={social[1].link} data-key={social[0]} data-field="link" onBlur={this.handleSave} onChange={this.handleFieldUpdate} className="ordinaryField" placeholder="Link to social account" />
+                            <input type="text" value={social[1].icon} data-key={social[0]} data-field="icon" onBlur={this.handleSave} onChange={this.handleFieldUpdate} className="ordinaryField" placeholder="Link to sicial icon" />
                         </div>
 
                         <div className="social__item-delete" onClick={() => this.removeSocialItem(social[0])}>
@@ -88,7 +100,7 @@ class Socials extends React.Component {
             sort: 1,
             caption: 'new social connection',
             link: 'please set your connection link',
-            icon: 'set link to icon to dislay'
+            icon: '/social.svg'
         });
     }
 
